@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Task</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F9FFFB;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3CradialGradient id='a' cx='0' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23defff6'/%3E%3Cstop offset='1' stop-color='%23defff6' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='b' cx='1200' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23d9fffa'/%3E%3Cstop offset='1' stop-color='%23d9fffa' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='600' cy='0' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23beedff'/%3E%3Cstop offset='1' stop-color='%23beedff' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='d' cx='600' cy='800' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23F9FFFB'/%3E%3Cstop offset='1' stop-color='%23F9FFFB' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='e' cx='0' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23C2F7FF'/%3E%3Cstop offset='1' stop-color='%23C2F7FF' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='f' cx='1200' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23B9E2FF'/%3E%3Cstop offset='1' stop-color='%23B9E2FF' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' width='1200' height='800'/%3E%3Crect fill='url(%23c)' width='1200' height='800'/%3E%3Crect fill='url(%23d)' width='1200' height='800'/%3E%3Crect fill='url(%23e)' width='1200' height='800'/%3E%3Crect fill='url(%23f)' width='1200' height='800'/%3E%3C/svg%3E");
+      background-attachment: fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      color: #4a4a4a;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 2.5em;
+      letter-spacing: 2px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    select,
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    a.back-home {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    a.back-home:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Add Task</h2>
+  <form action="/tasks/add" method="post">
+    <label for="userId">User:</label>
+    <select id="userId" name="userId" required>
+      {{#each users}}
+      <option value="{{this._id}}">{{this.name}}</option>
+      {{/each}}
+    </select>
+
+    <label for="name">Task Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="type">Task Type:</label>
+    <select id="type" name="type" required>
+      <option value="Pending">Pending</option>
+      <option value="Done">Done</option>
+    </select>
+
+    <button type="submit">Add Task</button>
+  </form>
+  <a href="/" class="back-home">Back Home</a>
+</body>
+
+</html>
